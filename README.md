@@ -15,6 +15,8 @@ _
 
 The Pizza Ordering Application is a web-based platform that allows users to order pizzas with their desired toppings and sizes. The application provides a user-friendly interface where users can select from a variety of toppings (such as cheese, pepperoni and veggie) and choose a size for their pizza. The application then calculates and displays the final cost of the pizza based on the selected toppings and size.
 
+View demo here: https://helenayele1.github.io/Pizza-Parlor/
+
 ## Setup/Installation Requirements
 
 * Clone the repository to your local machine.
