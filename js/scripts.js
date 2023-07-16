@@ -1,24 +1,41 @@
+//UI logic
+
 window.onload = function() {
-event.preventDefault()
-};
-
-//Pizza constructor
-const PizzaToppings = function(["veggie", "pepperoni", "cheese"], medium) {
-    this.veggie = veggie
-    this.peperroni = perperoni
-    this.cheese = cheese
-   
-};
-
-const sizeOptions = {
-    small: { name: "Small", price: 20 },
-    medium: { name: "Medium", price: 25 },
-    large: { name: "Large", price: 30 }
-};
-
-Pizza.prototype.price = function() {
-    //get the price based on selected size
-    const selectedSize = sizeOptions[this.size]
-    this.totalPrice = selectedSize.price;
-};
-
+    const pizzaForm = document.getElementById("pizzaForm");
+    const totalCostElement = document.getElementById("totalCost");
+  
+    pizzaForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      const selectedTopping = document.querySelector('input[name="topping"]:checked');
+      const selectedSize = document.querySelector('select[name="size"]');
+  
+      if (selectedTopping && selectedSize) {
+        const topping = selectedTopping.value;
+        const size = selectedSize.value;
+        const pizzaOrder = new PizzaOrder(size, topping);
+  
+        totalCostElement.textContent = pizzaOrder.calculateTotalCost();
+      }
+    });
+  //BU logic
+    function PizzaOrder(size, topping) {
+      this.size = size;
+      this.topping = topping;
+    }
+  
+    PizzaOrder.prototype.calculateTotalCost = function() {
+      const sizeOptions = {
+        small: { name: "Small", price: 20 },
+        medium: { name: "Medium", price: 25 },
+        large: { name: "Large", price: 30 }
+      };
+  
+      const selectedSize = sizeOptions[this.size];
+      const totalPrice = selectedSize.price;
+      const pizzaDescription = `${selectedSize.name} pizza with ${this.topping}`;
+  
+      return `Total Cost: $${totalPrice}. ${pizzaDescription}.`;
+    };
+  };
+  
